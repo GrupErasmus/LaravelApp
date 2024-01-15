@@ -1,21 +1,25 @@
 <?php
 
+use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\TaskController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\UserController;
+
+//Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
+Route::get('/',[TaskController::class,'index']);
+Route::get('/users',[UserController::class,'index']);
+
+Route::get('/contact',[PagesController::class,'contact']);
+
+Route::get('/about',[PagesController::class,'about']);
+
+
+Route::get('/tasks', [TaskController::class, 'index']);
+Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
+
 
 Route::middleware([
     'auth:sanctum',
